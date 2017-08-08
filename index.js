@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render('index', allDinos)
 })
 let allDinos = [
   {
@@ -63,6 +63,54 @@ let allDinos = [
     habitat: 'Temperate Deciduous Forest'
   }
 ]
+
+app.get('/api/dinosaurs/:id', (req, res) => {
+  const dinoId = parseInt(req.params.id)
+  const myDino = allDinos.find(dino => {
+    return dino.id === dinoId
+  })
+  res.json(myDino)
+})
+
+app.get('/api/dinosaurs', (req, res) => {
+  res.json(allDinos)
+})
+
+app.get('/api/dinosaurs/:id/habitat', (req, res) => {
+  const dinoId = parseInt(req.params.id)
+  const myDino = allDinos.find(dino => {
+    return dino.id === dinoId
+  })
+  res.json(myDino.habitat)
+})
+
+app.post('/api/dinosaurs', (req, res) => {
+  let newDino = {
+    id: allDinos.length + 1,
+    name: req.body.name,
+    color: req.body.color,
+    length: req.body.length,
+    weight: req.body.weight,
+    habitat: req.body.habitat
+  }
+  allDinos.push(newDino)
+  res.json(newDino)
+})
+
+app.delete('/api/dinosaurs/:id', (req, res) => {
+  const dinoId = parseInt(req.params.id)
+  allDinos = allDinos.filter(dino => dino.id !== dinoId)
+  res.json(allDinos)
+})
+
+app.put('/api/dinosaurs/:id', (req, res) => {
+  const dinoId = parseInt(req.params.id)
+  const myDino = allDinos.find(dino => {
+    return dino.id === dinoId
+  })
+  myDino.name = 'Meredith'
+  res.json(myDino)
+})
 
 app.listen(3000, () => {
   console.log("Let's Do This")

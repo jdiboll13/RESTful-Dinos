@@ -5,6 +5,23 @@
     <title>Dinosuars!!</title>
   </head>
   <body>
-
+    <div class="dinos">
+      <h1>Look at all these <del>chickens</del> dinosaurs!</h1>
+      {{#id}}
+        {{name}}
+        <dl class="">
+          <dd>Color</dd>
+          {{#color}}
+          <dt>{{.}}</dt>
+          {{/color}}
+          <dd>Length</dd>
+          <dt>{{length}}</dt>
+          <dd>Weight</dd>
+          <dt>{{weight}}</dt>
+          <dd>Habitat</dd>
+          <dt>{{habitat}}</dt>
+        </dl>
+      {{/id}}
+    </div>
   </body>
 </html>
