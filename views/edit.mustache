@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Dinosaur!!!</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div class="dino">
+      <h2>You've Learned Something New About This Dinosaur!</h2>
+      <h3>Please Change the Following:</h3>
+      {{#dino}}
+      <form class="dinoform" action="/api/edit/{{id}}" method="post">
+        <p>{{name}} | <input type="text" name="name" value="{{name}}" placeholder="Dinosaur Name"></p>
+        <p>{{imageurl}} | <input type="text" name="imageurl" value="{{imageurl}}" placeholder="Picture URL"></p>
+        <p>{{length}} | <input type="text" name="length" value="{{length}}" placeholder="Length"></p>
+        <p>{{weight}} | <input type="text" name="weight" value="{{weight}}" placeholder="Weight"></p>
+        <p>{{habitat}} | <input type="text" name="habitat" value="{{habitat}}" placeholder="Habitat"></p>
+        <button type="submit" name="button">Submit</button>
+      </form>
+      {{/dino}}
+    </div>
+  </body>
+</html>

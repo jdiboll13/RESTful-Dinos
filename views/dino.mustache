@@ -14,7 +14,6 @@
         </figure>
         <div class="info">
           <h1>{{name}}</h1>
-          <p>ID | {{id}}</p>
           <p>Length | {{length}}</p>
           <p>Weight | {{weight}}</p>
           <p>Habitat | {{habitat}}</p>
@@ -24,8 +23,13 @@
             </form>
           </div>
           <div class="edit">
-            <form class="" action="/api/dinosaurs/{{id}}" method="put">
+            <form class="" action="/api/edit/{{id}}" method="get">
               <button type="submit" name="edit">Edit Dinosaur</button>
+            </form>
+          </div>
+          <div class="home">
+            <form class="" action="/" method="get">
+              <button type="submit" name="home">Home</button>
             </form>
           </div>
         </div>

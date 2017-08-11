@@ -55,12 +55,29 @@ app.post('/api/dinosaurs/:id', (req, res) => {
     .none('DELETE FROM dinosaursdb WHERE id = $(id)', { id })
     .then(res.redirect('/'))
 })
+app.get('/api/edit/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  database.one(queryuser, { id: id }).then(dino => {
+    res.render('edit', { dino })
+  })
+})
 
-app.put('/api/dinosaurs/:id', (req, res) => {
-  const id = req.params.id
+app.post('/api/edit/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  const dino = {
+    id: id,
+    name: req.body.name,
+    imageurl: req.body.imageurl,
+    length: req.body.length,
+    weight: req.body.weight,
+    habitat: req.body.habitat
+  }
   database
-    .none('DELETE FROM dinosaursdb WHERE id = $(id)', { id })
-    .then(res.redirect('/'))
+    .none(
+      'UPDATE dinosaursdb SET name = $(name), imageurl = $(imageurl), length = $(length), weight = $(weight), habitat = $(habitat) WHERE id = $(id)',
+      dino
+    )
+    .then(res.redirect(`/api/dinosaurs/${id}`))
 })
 
 app.listen(3000, () => {
