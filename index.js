@@ -23,52 +23,46 @@ app.get('/', (req, res) => {
 app.get('/api/dinosaurs/:id', (req, res) => {
   const id = parseInt(req.params.id)
   database.one(queryuser, { id: id }).then(dino => {
-    console.log(dino)
     res.render('dino', { dino })
   })
 })
-
-app.get('/api/dinosaurs', (req, res) => {
-  res.json(allDinos)
-})
-
-// app.get('/api/dinosaurs/:id/habitat', (req, res) => {
-//   const dinoId = parseInt(req.params.id)
-//   const myDino = allDinos.find(dino => {
-//     return dino.id === dinoId
-//   })
-//   res.json(myDino.habitat)
-// })
-
 //Make a form to add a new dinosuar
+app.get('/api/dinosaurs', (req, res) => {
+  res.render('new')
+})
 
 app.post('/api/dinosaurs', (req, res) => {
   let newDino = {
-    id: allDinos.length + 1,
     name: req.body.name,
-    color: req.body.color,
+    imageurl: req.body.imageurl,
     length: req.body.length,
     weight: req.body.weight,
     habitat: req.body.habitat
   }
-  allDinos.push(newDino)
-  res.json(newDino)
+  database
+    .one(
+      `INSERT INTO dinosaursdb (name, imageurl, length, weight, habitat) VALUES ($(name), $(imageurl), $(length), $(weight), $(habitat)) RETURN id`,
+      newDino
+    )
+    .then(newDino => {
+      res.redirect('/')
+    })
 })
 
-app.delete('/api/dinosaurs/:id', (req, res) => {
-  const dinoId = parseInt(req.params.id)
-  allDinos = allDinos.filter(dino => dino.id !== dinoId)
-  res.json(allDinos)
-})
-
-app.put('/api/dinosaurs/:id', (req, res) => {
-  const dinoId = parseInt(req.params.id)
-  const myDino = allDinos.find(dino => {
-    return dino.id === dinoId
-  })
-  myDino.name = 'Meredith'
-  res.json(myDino)
-})
+// app.delete('/api/dinosaurs/:id', (req, res) => {
+//   const dinoId = parseInt(req.params.id)
+//   allDinos = allDinos.filter(dino => dino.id !== dinoId)
+//   res.json(allDinos)
+// })
+//
+// app.put('/api/dinosaurs/:id', (req, res) => {
+//   const dinoId = parseInt(req.params.id)
+//   const myDino = allDinos.find(dino => {
+//     return dino.id === dinoId
+//   })
+//   myDino.name = 'Meredith'
+//   res.json(myDino)
+// })
 
 app.listen(3000, () => {
   console.log("Let's Do This")

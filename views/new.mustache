@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>New Dinosaur!!!</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div class="newDino">
+      <h2>You've Discovered a New Species!</h2>
+      <h3>Please Enter the Following:</h3>
+      <form class="dinoform" action="/api/dinosaurs" method="post">
+        <p><input type="text" name="name" value="" placeholder="Dinosaur Name"></p>
+        <p><input type="text" name="imageurl" value="" placeholder="Picture URL"></p>
+        <p><input type="text" name="length" value="" placeholder="Length"></p>
+        <p><input type="text" name="weight" value="" placeholder="Weight"></p>
+        <p><input type="text" name="habitat" value="" placeholder="Habitat"></p>
+        <button type="submit" name="button">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

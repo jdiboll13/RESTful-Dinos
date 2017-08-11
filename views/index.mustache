@@ -8,12 +8,15 @@
   <body>
     <div class="container">
       <h1>Look at all these <del>chickens</del> dinosaurs!</h1>
+      <form class="" action="/api/dinosaurs" method="get">
+        <button type="submit" name="newDino">New Dinosaur</button>
+      </form>
       <div class="dinos">
         <ul class="dinoInfo">
           {{#rows}}
             <li>
-              <img src="{{imageurl}}" alt="oopps">
               <h2><a href="/api/dinosaurs/{{id}}">{{name}}</a></h2>
+              <img src="{{imageurl}}" alt="oopps">
             </li>
           {{/rows}}
         </ul>

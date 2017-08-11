@@ -7,7 +7,10 @@ body {
   align-items: center;
   min-height: 100vh;
 }
-
+button {
+  height: 3em;
+  border-radius: 5px;
+}
 .dinoInfo {
   display: flex;
   flex-flow: row wrap;
