@@ -41,7 +41,7 @@ app.post('/api/dinosaurs', (req, res) => {
   }
   database
     .one(
-      `INSERT INTO dinosaursdb (name, imageurl, length, weight, habitat) VALUES ($(name), $(imageurl), $(length), $(weight), $(habitat)) RETURN id`,
+      'INSERT INTO dinosaursdb (name, imageurl, length, weight, habitat) VALUES ($(name), $(imageurl), $(length), $(weight), $(habitat)) RETURNING id',
       newDino
     )
     .then(newDino => {
@@ -49,20 +49,19 @@ app.post('/api/dinosaurs', (req, res) => {
     })
 })
 
-// app.delete('/api/dinosaurs/:id', (req, res) => {
-//   const dinoId = parseInt(req.params.id)
-//   allDinos = allDinos.filter(dino => dino.id !== dinoId)
-//   res.json(allDinos)
-// })
-//
-// app.put('/api/dinosaurs/:id', (req, res) => {
-//   const dinoId = parseInt(req.params.id)
-//   const myDino = allDinos.find(dino => {
-//     return dino.id === dinoId
-//   })
-//   myDino.name = 'Meredith'
-//   res.json(myDino)
-// })
+app.post('/api/dinosaurs/:id', (req, res) => {
+  const id = req.params.id
+  database
+    .none('DELETE FROM dinosaursdb WHERE id = $(id)', { id })
+    .then(res.redirect('/'))
+})
+
+app.put('/api/dinosaurs/:id', (req, res) => {
+  const id = req.params.id
+  database
+    .none('DELETE FROM dinosaursdb WHERE id = $(id)', { id })
+    .then(res.redirect('/'))
+})
 
 app.listen(3000, () => {
   console.log("Let's Do This")

@@ -14,11 +14,23 @@
         </figure>
         <div class="info">
           <h1>{{name}}</h1>
+          <p>ID | {{id}}</p>
           <p>Length | {{length}}</p>
           <p>Weight | {{weight}}</p>
           <p>Habitat | {{habitat}}</p>
-        {{/dino}}
+          <div class="delete">
+            <form class="" action="/api/dinosaurs/{{id}}" method="post">
+              <button type="submit" name="delete">Delete Dinosaur</button>
+            </form>
+          </div>
+          <div class="edit">
+            <form class="" action="/api/dinosaurs/{{id}}" method="put">
+              <button type="submit" name="edit">Edit Dinosaur</button>
+            </form>
+          </div>
         </div>
+        {{/dino}}
+      </div>
     </div>
   </body>
 </html>
