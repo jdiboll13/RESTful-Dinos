@@ -40,38 +40,37 @@ a {
   color: #4777d6;
 }
 
-/*.user {
+.dino {
   font-size: 1.4em;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.user h1 {
+.dino h1 {
   font-size: 3em;
   margin: 0.25em 0;
 }
 
-.user .primary {
+.dino .primary {
   display: flex;
 }
 
-.user .contact p {
+.dino .info p {
   margin: 0;
 }
 
-.user figure {
+.dino figure {
   margin: 1em;
 }
 
-.user figure img {
+.dino figure img {
   border: thin solid #666;
-  border-radius: 50%;
   padding: 0.5em;
   width: 150px;
 }
 
-.user dl dt {
+.dino dl dt {
   float: left;
   font-weight: bold;
   text-align: right;
@@ -80,7 +79,7 @@ a {
   margin-bottom: 0.5em;
 }
 
-.user dl dd {
+.dino dl dd {
   margin-left: calc(150px + 3em);
   margin-bottom: 0.5em;
-}*/
+}

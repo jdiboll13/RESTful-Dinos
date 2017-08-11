@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Dinosaurs!!</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div class="dino">
+      <div class="primary">
+        {{#dino}}
+        <figure>
+          <img src="{{imageurl}}">
+        </figure>
+        <div class="info">
+          <h1>{{name}}</h1>
+          <p>Length | {{length}}</p>
+          <p>Weight | {{weight}}</p>
+          <p>Habitat | {{habitat}}</p>
+        {{/dino}}
+        </div>
+    </div>
+  </body>
+</html>

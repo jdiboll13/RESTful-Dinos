@@ -21,24 +21,26 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/dinosaurs/:id', (req, res) => {
-  const dinoId = parseInt(req.params.id)
-  const myDino = allDinos.find(dino => {
-    return dino.id === dinoId
+  const id = parseInt(req.params.id)
+  database.one(queryuser, { id: id }).then(dino => {
+    console.log(dino)
+    res.render('dino', { dino })
   })
-  res.json(myDino)
 })
 
 app.get('/api/dinosaurs', (req, res) => {
   res.json(allDinos)
 })
 
-app.get('/api/dinosaurs/:id/habitat', (req, res) => {
-  const dinoId = parseInt(req.params.id)
-  const myDino = allDinos.find(dino => {
-    return dino.id === dinoId
-  })
-  res.json(myDino.habitat)
-})
+// app.get('/api/dinosaurs/:id/habitat', (req, res) => {
+//   const dinoId = parseInt(req.params.id)
+//   const myDino = allDinos.find(dino => {
+//     return dino.id === dinoId
+//   })
+//   res.json(myDino.habitat)
+// })
+
+//Make a form to add a new dinosuar
 
 app.post('/api/dinosaurs', (req, res) => {
   let newDino = {
